@@ -83,7 +83,7 @@ func UTF16ToUTF8Bytes(in []byte, length uint32) ([]byte, error) {
 	// which is half of the actual buffer used by byte(what older Windows OS returns), checking if the length
 	//land on the end of used buffer, if no, double it.
 	var i int
-	if IsTheEndOfContent(in, length) {
+	if isTheEndOfContent(in, length) {
 		i = int(length)
 		if i%2 != 0 {
 			i--
@@ -111,7 +111,7 @@ func UTF16ToUTF8Bytes(in []byte, length uint32) ([]byte, error) {
 	return decoded, err
 }
 
-func IsTheEndOfContent(in []byte, length uint32) bool {
+func isTheEndOfContent(in []byte, length uint32) bool {
 	// scan next 100 characters, if any of them is none '0', return false
 	i := int(length)
 
